@@ -24,7 +24,14 @@ public class Program {
         presenter.updateTablesView();
 
         view.reservationTable(new Date(), 2, "Станислав");
-        view.changeReservationTable(1001, new Date(), 4, "Станислав");
+        view.reservationTable(new Date(), 2, "Станислав");
+        view.reservationTable(new Date(), 2, "Станислав");
+        view.reservationTable(new Date(), 2, "Станислав");
+        view.reservationTable(new Date(), 2, "Станислав");
+        view.changeReservationTable(1002, new Date(), 4, "Станислав");
+        view.changeReservationTable(1003, new Date(), 4, "Станислав");
+        view.changeReservationTable(1003, new Date(), 4, "Станислав");
+        view.changeReservationTable(1007, new Date(), 4, "Станислав");
     }
 
 }

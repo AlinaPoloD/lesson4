@@ -22,6 +22,9 @@ public class BookingPresenter implements ViewObserver {
     private void updateReservationTableView(int reservationNo){
         view.showReservationTableResult(reservationNo);
     }
+    private void changeReservationTableView(int oldNum, int reservationNo){
+        view.changeReservationTableResult(oldNum,reservationNo);
+    }
 
     @Override
     public void onReservationTable(Date orderDate, int tableNo, String name) {
@@ -34,5 +37,17 @@ public class BookingPresenter implements ViewObserver {
             updateReservationTableView(-1);
         }
 
+    }
+
+    @Override
+    public void onchangeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
+        try
+        {
+            int changeNo = model.changeReservationTable(oldReservation,reservationDate, tableNo, name);
+            changeReservationTableView(oldReservation,changeNo);
+        }
+        catch (Exception e){
+            changeReservationTableView(-1,-1);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package ru.geekbrains.oop.lesson5.views;
 
+import ru.geekbrains.oop.lesson5.models.Reservation;
 import ru.geekbrains.oop.lesson5.models.Table;
 import ru.geekbrains.oop.lesson5.presenters.View;
 import ru.geekbrains.oop.lesson5.presenters.ViewObserver;
@@ -36,6 +37,16 @@ public class BookingView implements View {
         }
     }
 
+    @Override
+    public void changeReservationTableResult(int oldNum, int newNum) {
+        if (oldNum > 0 && newNum > 0){
+            System.out.printf("Бронирование #%d успешно отменено\n", oldNum);
+            showReservationTableResult(newNum);
+        }
+        else {
+            System.out.println("Произошла ошибка при попытке отмены бронирования.\nПовторите операцию позже.");
+        }
+    }
 
     public void reservationTable(Date orderDate, int tableNo, String name){
         if (observers != null)
@@ -45,6 +56,10 @@ public class BookingView implements View {
     }
 
     public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+        if (observers != null)
+            for (ViewObserver observer : observers){
+                observer.onchangeReservationTable(oldReservation, reservationDate, tableNo, name);
+            }
 
     }
 }

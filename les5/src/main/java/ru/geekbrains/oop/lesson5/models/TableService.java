@@ -47,7 +47,17 @@ public class TableService implements Model {
      * @return
      */
     public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
-        return -1;
+        for (Table table : tables) {
+            for (Reservation res: table.getReservations()) {
+                if (res.getId()==oldReservation) {
+                    table.getReservations().remove(res);
+                    return reservationTable(reservationDate, tableNo, name);
+                }
+
+            }
+
+            }
+        throw new RuntimeException("Нет такого номера бронирования");
     }
 
 
