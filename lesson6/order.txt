@@ -1,0 +1,6 @@
+{
+"clientName":"Василий",
+"product":"Суп",
+"qnt":2,
+"price":500
+}
